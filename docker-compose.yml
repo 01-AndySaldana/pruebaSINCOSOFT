@@ -1,0 +1,27 @@
+version: '3.3'
+
+services:
+  base_datos:
+    image: mysql:5.7
+    command: --default-authentication-plugin=mysql_native_password
+    container_name: mysql_node
+    restart: unless-stopped
+    environment:
+     MYSQL_ROOT_PASSWORD: '123456'
+     MYSQL_DATABASE: 'dbsincodoc'      
+    ports:
+     - 3307:3306
+    volumes:
+     - ./data_db:/var/lib/mysql     
+  projectsinco:
+    build: 
+      context: ./
+    command: npm run dev
+    restart: unless-stopped
+    container_name: projectSINCO
+    ports: 
+      - 80:3000
+    volumes: 
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+                

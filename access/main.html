@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Prueba SINCO</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+  <link href="https://unpkg.com/bootstrap-table@1.21.3/dist/bootstrap-table.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
+  <script src="https://unpkg.com/bootstrap-table@1.21.3/dist/bootstrap-table-locale-all.min.js"></script>
+  <script src="https://unpkg.com/bootstrap-table@1.21.3/dist/extensions/export/bootstrap-table-export.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <script src="./main.js"></script>
+</head>
+
+<body>
+  <div class="container mt-5">
+    <h1 class="mb-5">Prueba SINCO</h1>
+
+    <h2>Agregar documento</h2>
+    
+      <div class="form-group">
+        <label for="nombre">Nombre personalizado:</label>
+        <input type="text" class="form-control" id="nombreC" name="nombre">
+      </div>
+      <div class="form-group">
+        <label for="archivo">Archivo:</label>
+        <input type="file" class="form-control-file" id="archivo" name="archivo" >
+      </div> 
+    
+    <button type="button" class="btn btn-primary" onclick="crearDoc(event)">Agregar</button>
+
+    <div id="form-update" style="display:none;">
+      <h2>Editar documento</h2>
+      <form method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="nombre">Nombre personalizado:</label>
+          <input type="hidden" value="undefine" id="inputToUpdate" >
+          <input type="text" class="form-control" id="nombreA" name="nombre" required>
+        </div>
+        <div class="form-group">
+          <label for="archivo">Archivo:</label>
+          <input type="file" class="form-control-file" id="archivo" name="archivo">
+        </div>
+        <button type="submit" class="btn btn-primary" onclick="actlizarDoc(event)">Guardar cambios</button>
+      </form>
+
+    </div>
+
+    <div class="container">
+      <h1 class="text text-success text-center ">
+        Contenido
+      </h1>
+      <h6 class="text text-success text-center">
+        Datos
+      </h6>
+      <table class="table-striped border-success">
+        <thead>
+          <tr>
+            <th data-field="id" data-formatter="idFormatter">
+              <span class="text-success">
+                ID
+              </span>
+            </th>
+            <th data-field="name_original">
+              <span class="text-success">
+                Nombre original
+              </span>
+            </th>
+            <th data-field="name_personalizado">
+              <span class="text-success">
+                Nombre personalizado
+              </span>
+            </th>
+            <th data-field="extension">
+              <span class="text-success">
+                Extension
+              </span>
+            </th>
+            <th data-field="mimetype">
+              <span class="text-success">
+                mimetype
+              </span>
+            </th>
+
+          </tr>
+        </thead>
+      </table>
+    </div>
